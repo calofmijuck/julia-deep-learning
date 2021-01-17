@@ -1,21 +1,21 @@
 module Activation
 
 # sigmoid function
-function sigmoid(x::Union{Number, AbstractArray})::Union{Number, AbstractArray}
-    return 1 ./ (1 .+ exp.(-x))
-end
+sigmoid(x::Number)::Number = 1 / (1 + exp(-x))
+
+sigmoid(x::AbstractArray)::AbstractArray = 1 ./ (1 ./ + exp.(-x))
 
 # alias
 σ = sigmoid
 
 # ReLU function
-function relu(x::Union{Number, AbstractArray})::Union{Number, AbstractArray}
-    return max.(0, x)
-end
+relu(x::Number)::Number = max(0, x)
+
+relu(x::AbstractArray)::AbstractArray = max.(0, x)
 
 # Leaky ReLU function
-function leaky_relu(x::Union{Number, AbstractArray})::Union{Number, AbstractArray}
-    return max.(0.01x, x)
-end
+leaky_relu(x::Number)::Number = max(0.01x, x)
+
+leaky_relu(x::AbstractArray)::AbstractArray = max.(0.01x, x)
 
 end
