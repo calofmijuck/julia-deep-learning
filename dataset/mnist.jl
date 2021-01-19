@@ -7,8 +7,15 @@ using GZip
 using Main.Serialize
 using Main.DownloadMNIST
 
+NUM_LABELS = 10
+
 function convert_one_hot_label(labels::AbstractArray)::AbstractArray
-    # TODO: implement one hot label
+    one_hot_label = zeros(NUM_LABELS, length(labels))
+    for (idx, val) in enumerate(labels)
+        # Note that array indices are 1-based
+        one_hot_label[val + 1, idx] = 1
+    end
+    return one_hot_label
 end
 
 function load_mnist(;normalize::Bool=true, flatten::Bool=true, one_hot_label::Bool=false)
@@ -31,7 +38,8 @@ function load_mnist(;normalize::Bool=true, flatten::Bool=true, one_hot_label::Bo
 
     if flatten == false
         for key in ("train_img", "test_img")
-            dataset[key] = reshape(dataset[key], 1, 28, 28)
+            data_count = convert(Int64, length(dataset[key]) / DownloadMNIST.IMG_SIZE)
+            dataset[key] = reshape(dataset[key], data_count, 1, 28, 28)
         end
     end
 
