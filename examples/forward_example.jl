@@ -1,8 +1,8 @@
 include("../util/activation.jl")
 
-import Main.Activation
+Network = Dict{String, AbstractArray}
 
-function init_network()::Dict{String, AbstractArray}
+function init_network()::Network
     nn = Dict()
     nn["W1"] = [0.1 0.2; 0.3 0.4; 0.5 0.6]
     nn["W2"] = [0.1 0.2 0.3; 0.4 0.5 0.6]
@@ -15,7 +15,7 @@ function init_network()::Dict{String, AbstractArray}
     return nn
 end
 
-function forward(nn::Dict{String, AbstractArray}, x::AbstractArray)
+function forward(nn::Network, x::AbstractArray)::AbstractArray
     W1, W2, W3 = nn["W1"], nn["W2"], nn["W3"]
     b1, b2, b3 = nn["b1"], nn["b2"], nn["b3"]
 
