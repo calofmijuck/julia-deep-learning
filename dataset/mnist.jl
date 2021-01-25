@@ -4,8 +4,6 @@ include("download_mnist.jl")
 module MNIST
 
 using GZip
-using Main.Serialize
-using Main.DownloadMNIST
 
 NUM_LABELS = 10
 

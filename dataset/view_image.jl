@@ -1,6 +1,5 @@
 include("mnist.jl")
 
-using Main.MNIST
 using PyCall
 using LinearAlgebra
 

@@ -1,4 +1,8 @@
+include("../util/serialize.jl")
+
 module DownloadMNIST
+
+using GZip 
 
 DATASET_URL = "http://yann.lecun.com/exdb/mnist/"
 
