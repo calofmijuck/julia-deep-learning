@@ -1,10 +1,9 @@
-include("../util/serialize.jl")
 include("../util/activation.jl")
 include("../dataset/mnist.jl")
 
-Network = Dict{String, AbstractArray}
+Network = Dict{String,AbstractArray}
 
-function get_data()::Tuple{AbstractArray, AbstractArray}
+function get_data()::Tuple{AbstractArray,AbstractArray}
     (train_img, train_label), (test_img, test_label) = MNIST.load_mnist(normalize=false)
     return (test_img, test_label)
 end

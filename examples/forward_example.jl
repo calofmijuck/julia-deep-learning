@@ -1,6 +1,6 @@
 include("../util/activation.jl")
 
-Network = Dict{String, AbstractArray}
+Network = Dict{String,AbstractArray}
 
 function init_network()::Network
     nn = Dict()
