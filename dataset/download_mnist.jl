@@ -17,27 +17,28 @@ TRAIN_NUM = 60000
 TEST_NUM = 10000
 IMG_SIZE = 784
 
-SAVE_FILE = "mnist.jld2"
+DATASET_DIRECTORY = dirname(@__FILE__)
+SAVE_FILE = DATASET_DIRECTORY * "/mnist.jld2"
 
 function download_dataset()
     for (key, value) in FILENAMES
         if isfile(value)
             continue
         end
-        download(DATASET_URL * value, value)
+        download(DATASET_URL * value, DATASET_DIRECTORY * value)
     end
 end
 
 function load_image(filename::String)::AbstractArray
     f = GZip.open(filename)
-    data = read(f)[17:end]
+    data = read(f)[17:end] # Skip 16 bytes
     data_count = convert(Int64, length(data) / IMG_SIZE) 
     return reshape(data, IMG_SIZE, data_count) 
 end
 
 function load_label(filename::String)::AbstractArray
     f = GZip.open(filename)
-    data = read(f)[9:end]
+    data = read(f)[9:end] # Skip 7 bytes
     return data
 end
 

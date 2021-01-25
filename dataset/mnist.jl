@@ -1,9 +1,11 @@
-include("../util/serialize.jl")
 include("download_mnist.jl")
 
 module MNIST
 
 using GZip
+
+using Main.DownloadMNIST
+using Main.Serialize
 
 NUM_LABELS = 10
 
